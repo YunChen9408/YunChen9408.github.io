@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="陈云 Yun Chen 的个人学术主页：研究兴趣、个人履历、课题组及代表性论文。">
+  <meta name="color-scheme" content="light">
+  <title>陈云 Yun Chen | Academic Homepage</title>
+  <style>
+    :root {
+      --primary: #245b91;
+      --primary-dark: #163f67;
+      --primary-soft: #eef5fb;
+      --ink: #263443;
+      --ink-deep: #172736;
+      --muted: #6a7b89;
+      --line: #d8e2ea;
+      --side: #f4f7fa;
+      --surface: #ffffff;
+      --canvas: #ffffff;
+      --radius: 8px;
+      --shadow: 0 12px 32px rgba(22,51,79,.07);
+    }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; background:var(--canvas); color:var(--ink); font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei","Noto Sans CJK SC",Arial,sans-serif; font-size:15px; line-height:1.8; }
+    button,input,textarea,select { font:inherit; }
+    button { cursor:pointer; }
+    a { color:var(--primary); text-decoration:none; }
+    a:hover { color:var(--primary-dark); text-decoration:underline; }
+    a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible { outline:3px solid #83b6ee; outline-offset:3px; }
+    [hidden] { display:none !important; }
+    .layout { display:flex; min-height:100vh; }
+    .sidebar { position:fixed; left:0; top:0; bottom:0; z-index:30; width:238px; padding:35px 22px 26px; background:var(--side); border-right:1px solid var(--line); display:flex; flex-direction:column; }
+    .brand { display:block; color:var(--ink-deep); text-decoration:none; border-bottom:1px solid var(--line); padding:1px 6px 31px; }
+    .brand:hover { text-decoration:none; }
+    .brand-monogram { display:flex; align-items:center; justify-content:center; width:52px; height:52px; border:1px solid #b6ccdf; border-radius:6px; background:#fff; color:var(--primary); font-family:Georgia,"Times New Roman",serif; font-weight:700; font-size:24px; letter-spacing:-2px; margin-bottom:17px; }
+    .brand-title { display:block; font-weight:750; letter-spacing:.045em; font-size:18px; line-height:1.4; }
+    .brand-subtitle { display:block; margin-top:6px; color:var(--muted); font-size:11px; letter-spacing:.1em; line-height:1.55; text-transform:uppercase; }
+    .sidebar-label { font-size:10px; text-transform:uppercase; letter-spacing:.21em; color:#8da0af; font-weight:700; margin:31px 15px 10px; }
+    .nav { display:flex; flex-direction:column; gap:4px; }
+    .nav-link { color:#496070; border-left:3px solid transparent; border-radius:0 5px 5px 0; padding:10px 12px; display:flex; gap:12px; align-items:center; font-weight:550; transition:color .15s,background .15s; text-decoration:none; }
+    .nav-link:hover { text-decoration:none; background:#e8f0f7; color:var(--primary); }
+    .nav-link.active { color:var(--primary-dark); border-left-color:var(--primary); background:#e6eff8; font-weight:750; }
+    .nav-index { color:#94a9b8; font:12px Georgia,serif; }
+    .nav-link.active .nav-index { color:var(--primary); }
+    .sidebar-bottom { margin-top:auto; border-top:1px solid var(--line); padding:21px 9px 0; }
+    .sidebar-note { margin:0; line-height:1.8; font-size:12px; color:#7d8d9a; }
+    .sidebar-note strong { color:#526879; font-weight:650; }
+    .sidebar-edit { display:inline-flex; align-items:center; gap:7px; margin-top:15px; padding:6px 10px; background:#fff; border:1px solid #bfd0df; border-radius:5px; font-size:12px; color:var(--primary-dark); }
+    .sidebar-edit:hover { background:#eef5fb; }
+    .main-wrap { flex:1; min-width:0; margin-left:238px; }
+    .site-content { max-width:1030px; padding:60px 75px 100px; margin:0 auto; min-height:calc(100vh - 95px); }
+    .topline { display:flex; align-items:center; gap:10px; font-size:11px; font-weight:750; color:var(--primary); letter-spacing:.18em; text-transform:uppercase; margin-bottom:19px; }
+    .topline:before { content:""; display:inline-block; height:2px; width:23px; background:var(--primary); }
+    .page-title { font-size:35px; margin:0; font-weight:740; letter-spacing:.015em; line-height:1.35; color:var(--ink-deep); }
+    .page-title .en { font-family:Georgia,"Times New Roman",serif; color:#7b8d9c; font-size:.66em; font-weight:400; letter-spacing:0; margin-left:9px; }
+    .page-deck { margin:13px 0 30px; color:#738796; font-size:13px; }
+    .title-rule { height:2px; width:100%; background:linear-gradient(90deg,var(--primary) 0 25%,#dbe7ef 25% 100%); margin:19px 0 34px; }
+    .hero { display:grid; grid-template-columns:minmax(0, 1fr) 205px; gap:40px; align-items:start; margin-top:28px; }
+    .hero h1 { font-weight:760; font-size:40px; margin:0 0 3px; color:var(--ink-deep); letter-spacing:.06em; line-height:1.45; }
+    .hero h1 small { font-weight:400; font-size:27px; font-family:Georgia,"Times New Roman",serif; color:var(--primary); letter-spacing:0; }
+    .hero-role { color:var(--ink); font-weight:600; font-size:16px; margin:11px 0 6px; }
+    .hero-affil { margin:0; color:#627787; font-size:14px; line-height:1.85; }
+    .contact-stack { margin-top:21px; display:grid; gap:8px; }
+    .contact-row { display:flex; align-items:baseline; gap:9px; font-size:13px; line-height:1.8; }
+    .contact-label { color:#8a9ba6; font-size:11px; min-width:52px; white-space:nowrap; }
+    .contact-value { color:#536978; overflow-wrap:anywhere; }
+    .hero-photo { position:relative; aspect-ratio:4/4.7; max-height:252px; width:100%; border:1px solid #d3e2ee; padding:6px; background:#fff; box-shadow:var(--shadow); border-radius:6px; }
+    .hero-photo-inner { height:100%; width:100%; overflow:hidden; border-radius:2px; display:flex; justify-content:center; align-items:center; background:linear-gradient(152deg,#e8f1f8 3%,#cfdee9 100%); }
+    .hero-photo img { object-fit:cover; width:100%; height:100%; }
+    .photo-placeholder { position:relative; width:100%; height:100%; display:flex; align-items:center; justify-content:center; color:#567ca2; font-family:Georgia,"Times New Roman",serif; font-size:65px; letter-spacing:-7px; background:radial-gradient(circle at 75% 20%,rgba(255,255,255,.87),transparent 38%),linear-gradient(155deg,#e8f0f6,#c3d6e5); }
+    .photo-placeholder:before { position:absolute; content:""; width:155px; height:155px; border:1px solid rgba(255,255,255,.56); border-radius:50%; }
+    .photo-placeholder:after { content:""; position:absolute; bottom:14px; right:17px; height:2px; width:35px; background:rgba(255,255,255,.75); }
+    .section { margin-top:40px; }
+    .section-head { display:flex; align-items:baseline; justify-content:space-between; gap:20px; border-bottom:1px solid var(--line); margin-bottom:17px; padding-bottom:10px; }
+    .section-title { margin:0; color:var(--primary); font-size:19px; letter-spacing:.025em; font-weight:720; line-height:1.4; }
+    .section-title small { color:#9baab7; font:14px Georgia,"Times New Roman",serif; margin-left:10px; }
+    .section-subnote { font-size:11px; color:#8da0ae; white-space:nowrap; }
+    .intro { font-size:14px; color:#394c5c; max-width:890px; margin:0 0 13px; white-space:pre-line; }
+    .news-list,.research-list { list-style:none; padding:0; margin:0; }
+    .news-list li { display:grid; grid-template-columns:83px 1fr; gap:14px; padding:9px 2px; align-items:baseline; }
+    .news-date { display:inline-flex; font-size:11px; color:var(--primary); font-family:Georgia,serif; letter-spacing:.01em; font-weight:700; }
+    .news-text { font-size:14px; color:#405366; }
+    .news-desc { display:block; color:#8193a0; font-size:12px; margin-top:2px; line-height:1.6; }
+    .research-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:13px 25px; }
+    .research-item { padding:12px 12px 13px 15px; border-left:2px solid #b1cadd; background:#f8fafc; border-radius:0 5px 5px 0; }
+    .research-title { font-size:14px; font-weight:700; margin:0 0 2px; color:#263f56; }
+    .research-desc { font-size:12px; color:#758796; margin:0; line-height:1.75; }
+    .recruit { margin-top:21px; border-left:3px solid var(--primary); background:#f2f7fb; padding:14px 18px; border-radius:0 6px 6px 0; font-size:13px; color:#435d71; }
+    .recruit strong { display:block; color:var(--primary-dark); margin-bottom:4px; font-size:13px; }
+    .recruit p { margin:0; }
+    .academic-link { display:inline-flex; align-items:center; gap:4px; margin-top:14px; font-size:12px; font-weight:650; }
+    .academic-link:after { content:"↗"; font-family:Arial,sans-serif; }
+    .timeline { display:grid; gap:2px; }
+    .timeline-item { display:grid; grid-template-columns:145px minmax(0,1fr); gap:20px; padding:18px 4px; border-bottom:1px solid #e7edf2; }
+    .timeline-time { color:var(--primary); font-size:13px; font-weight:700; }
+    .timeline-title { font-size:15px; font-weight:720; color:#2a4052; margin:0 0 3px; }
+    .timeline-detail { color:#718391; font-size:13px; margin:0; }
+    .paper-controls { display:flex; flex-wrap:wrap; gap:7px; margin-bottom:25px; }
+    .filter-btn { padding:5px 15px; border:1px solid #d7e4ee; color:#63788b; background:#fff; border-radius:4px; font-size:12px; }
+    .filter-btn:hover,.filter-btn.is-active { background:#e8f1f8; color:var(--primary-dark); border-color:#b7cee0; }
+    .paper-list { list-style:none; padding:0; margin:0; counter-reset:paper; }
+    .paper-item { padding:18px 0 18px 40px; border-bottom:1px solid #e6edf3; position:relative; }
+    .paper-item:before { counter-increment:paper; content:counter(paper) "."; position:absolute; left:3px; top:19px; color:#7b93a6; font-family:Georgia,serif; font-size:15px; }
+    .paper-title { color:#203f5c; font-weight:680; font-size:14px; margin:0 0 5px; line-height:1.65; }
+    .paper-authors { color:#667a89; font-size:12px; margin:0; }
+    .paper-meta { display:flex; flex-wrap:wrap; align-items:center; gap:7px; margin-top:5px; font-size:12px; }
+    .paper-journal { color:#536a79; font-style:italic; }
+    .paper-year { color:#8ca0b0; }
+    .paper-badge { color:var(--primary); border:1px solid #bed3e3; background:#f0f6fa; padding:0 6px; border-radius:3px; font-size:10px; font-weight:700; line-height:1.75; }
+    .paper-link { font-size:11px; margin-left:3px; }
+    .member-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:13px; }
+    .member { border:1px solid #e0e9f0; background:#fafcfd; border-radius:5px; padding:14px 17px; }
+    .member-name { font-weight:700; color:#334a5c; font-size:14px; }
+    .member-role { font-size:11px; color:var(--primary); margin-left:9px; }
+    .member-note { margin:3px 0 0; color:#8494a0; font-size:12px; }
+    .gallery { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }
+    .gallery-card { margin:0; }
+    .gallery-card img { width:100%; height:auto; aspect-ratio:1.6; object-fit:cover; border:1px solid #e1e8ef; border-radius:4px; }
+    .gallery-card figcaption { font-size:12px; color:#83929f; margin-top:7px; }
+    .empty-text { color:#98a8b4; font-size:13px; padding:8px 0; }
+    .custom-body { white-space:pre-line; color:#455969; font-size:14px; }
+    .site-footer { max-width:1030px; margin:0 auto; border-top:1px solid #e4eaf0; padding:22px 75px 32px; display:flex; align-items:center; justify-content:space-between; gap:10px; font-size:11px; color:#9aa8b3; }
+    .site-footer strong { color:#698194; font-weight:600; }
+    .mobile-topbar,.mobile-shade { display:none; }
+    .soft-link { color:#668cac; }
+    /* Self-contained visual editor; no back-end, tokens, or remote service */
+    .editor-overlay { position:fixed; z-index:101; inset:0; background:rgba(20,35,52,.45); display:flex; justify-content:flex-end; }
+    .editor-panel { width:min(600px,100%); height:100%; background:#fff; box-shadow:-14px 0 60px rgba(18,34,51,.18); display:flex; flex-direction:column; font-size:13px; }
+    .editor-header { flex-shrink:0; padding:21px 24px 14px; border-bottom:1px solid var(--line); }
+    .editor-headline { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+    .editor-headline h2 { margin:0; font-size:19px; color:#1f384d; }
+    .editor-headline .editor-hint { display:inline-block; background:#eaf4fc; color:#335a7b; border-radius:3px; font-size:10px; padding:1px 6px; margin-left:8px; vertical-align:middle; }
+    .icon-button { display:inline-flex; align-items:center; justify-content:center; min-height:36px; width:36px; padding:0; font-size:22px; background:#f3f7fa; border:1px solid #dee7ee; border-radius:4px; color:#557080; }
+    .editor-warning { margin:11px 0 0; color:#637889; background:#f5f8fb; border-radius:4px; padding:9px 11px; font-size:11px; line-height:1.75; }
+    .editor-tabs { padding:12px 20px 11px; display:flex; gap:7px; overflow-x:auto; border-bottom:1px solid var(--line); flex-shrink:0; scrollbar-width:thin; }
+    .editor-tab { padding:5px 10px; color:#526c7d; background:#f4f7fa; border:1px solid #e3eaf0; border-radius:4px; white-space:nowrap; font-size:12px; }
+    .editor-tab.selected { background:var(--primary); color:white; border-color:var(--primary); }
+    .editor-body { flex:1; overflow:auto; padding:22px 25px 45px; }
+    .edit-group-title { font-size:15px; margin:0 0 14px; color:#2e4759; border-bottom:1px solid #e3ebf1; padding-bottom:8px; }
+    .edit-help { color:#7a8f9f; font-size:12px; margin:-4px 0 18px; }
+    .edit-field { margin-bottom:16px; }
+    .edit-field label { display:block; font-size:12px; font-weight:650; margin-bottom:5px; color:#536c7d; }
+    .edit-field input,.edit-field textarea,.edit-field select { display:block; width:100%; background:#fff; color:#24394b; padding:9px 10px; border:1px solid #cfdce6; border-radius:4px; font-size:13px; line-height:1.55; }
+    .edit-field textarea { min-height:76px; resize:vertical; }
+    .edit-field small { display:block; color:#98a6b0; font-size:11px; margin-top:3px; }
+    .edit-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    .edit-list { display:grid; gap:14px; margin-bottom:18px; }
+    .edit-item { padding:13px; background:#f8fafc; border:1px solid #e0e9ef; border-radius:6px; }
+    .edit-item-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+    .edit-item-top b { color:#406077; font-size:12px; }
+    .small-btn { padding:4px 9px; background:#fff; border:1px solid #cadbe7; color:#3a6482; border-radius:4px; font-size:11px; margin-left:4px; }
+    .small-btn.danger { color:#a44b4b; border-color:#e5c9c9; }
+    .add-btn { width:100%; border:1px dashed #9fbdd5; background:#f2f8fd; color:var(--primary); padding:10px; border-radius:4px; font-size:12px; font-weight:680; }
+    .add-btn:hover { background:#e4f2fc; }
+    .editor-actions { padding:14px 22px 18px; background:#f8fafc; border-top:1px solid var(--line); flex-shrink:0; display:flex; gap:8px; flex-wrap:wrap; }
+    .editor-actions button,.primary-action,.secondary-action { border-radius:5px; padding:10px 13px; font-size:12px; font-weight:700; border:1px solid #bdd0dd; background:#fff; color:var(--primary-dark); }
+    .primary-action { background:var(--primary) !important; color:#fff !important; border-color:var(--primary) !important; }
+    .secondary-action { background:#fff; }
+    .editor-actions .primary-action { flex:1; }
+    .file-pick { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+    .file-pick input { max-width:100%; font-size:12px; }
+    .edit-preview { max-width:124px; max-height:120px; object-fit:cover; border:1px solid var(--line); border-radius:4px; display:block; margin:8px 0; }
+    .action-stack { display:grid; gap:12px; }
+    .action-card { padding:14px; border:1px solid #dce6ee; border-radius:6px; }
+    .action-card h3 { font-size:14px; color:#24465e; margin:0 0 5px; }
+    .action-card p { margin:0 0 11px; font-size:12px; color:#708494; }
+    .action-card button { margin-right:8px; }
+    .hint-box { background:#edf5fb; border-left:3px solid #8cb5d7; color:#4e6c82; padding:12px 14px; font-size:12px; border-radius:0 4px 4px 0; margin-top:14px; }
+    .toast { position:fixed; left:50%; bottom:26px; transform:translateX(-50%); background:#24445b; color:#fff; z-index:150; border-radius:6px; box-shadow:0 8px 30px #1b344844; padding:11px 17px; font-size:12px; pointer-events:none; }
+    @media(max-width:990px) {
+      .site-content { padding:49px 44px 80px; }
+      .site-footer { padding:20px 44px 28px; }
+      .hero { gap:25px; grid-template-columns:minmax(0,1fr) 178px; }
+    }
+    @media(max-width:730px) {
+      .sidebar { transform:translateX(-102%); transition:transform .2s ease; width:min(280px,86vw); box-shadow:16px 0 36px rgba(20,35,52,.09); }
+      .sidebar.is-open { transform:translateX(0); }
+      .main-wrap { margin-left:0; }
+      .mobile-topbar { height:61px; background:#fff; padding:0 22px; border-bottom:1px solid var(--line); display:flex; justify-content:space-between; align-items:center; position:sticky; top:0; z-index:20; }
+      .mobile-topbar strong { color:#2b465c; font-size:15px; }
+      .menu-btn { background:#f5f8fa; border:1px solid #d5e3eb; font-size:12px; padding:6px 11px; border-radius:4px; color:var(--primary); }
+      .mobile-shade.is-open { display:block; position:fixed; z-index:25; inset:0; background:#14253850; }
+      .site-content { padding:38px 24px 70px; }
+      .site-footer { padding:21px 24px; }
+      .hero { grid-template-columns:minmax(0,1fr) 135px; gap:16px; }
+      .hero h1 { font-size:30px; }
+      .hero h1 small { font-size:19px; display:block; margin-top:0; }
+      .hero-photo { padding:4px; }
+      .photo-placeholder { font-size:41px; }
+      .photo-placeholder:before { width:96px; height:96px; }
+      .hero-role { font-size:14px; }
+      .hero-affil { font-size:12px; }
+      .contact-stack { margin-top:12px; }
+      .contact-row { flex-wrap:wrap; gap:2px 8px; font-size:12px; }
+      .section { margin-top:33px; }
+      .research-list { grid-template-columns:1fr; gap:9px; }
+      .page-title { font-size:29px; }
+      .page-title .en { font-size:18px; }
+      .timeline-item { grid-template-columns:102px 1fr; gap:10px; }
+      .gallery,.member-grid { grid-template-columns:1fr; }
+    }
+    @media(max-width:430px) {
+      .hero { grid-template-columns:1fr; }
+      .hero-photo { grid-row:1; width:148px; margin-bottom:4px; }
+      .hero h1 small { display:inline-block; margin-left:7px; }
+      .news-list li { grid-template-columns:63px 1fr; gap:8px; }
+      .site-footer { flex-direction:column; align-items:flex-start; }
+      .edit-row { grid-template-columns:1fr; gap:0; }
+      .editor-header { padding:16px 17px 12px; }
+      .editor-body { padding:19px 17px 35px; }
+      .editor-tabs { padding-left:13px; padding-right:13px; }
+    }
+    @media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } .sidebar { transition:none; } }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar" id="sidebar" aria-label="主导航">
+      <a href="#home" class="brand" id="brand-home">
+        <span class="brand-monogram">YC</span>
+        <span class="brand-title" id="brand-name">陈云 <span style="font-weight:400">Yun Chen</span></span>
+        <span class="brand-subtitle">Academic Homepage</span>
+      </a>
+      <div class="sidebar-label">Navigation / 导航</div>
+      <nav class="nav" id="nav">
+        <a class="nav-link" href="#home" data-page="home"><span class="nav-index">01</span>主页 / Home</a>
+        <a class="nav-link" href="#welcome" data-page="welcome"><span class="nav-index">02</span>Welcome</a>
+        <a class="nav-link" href="#biography" data-page="biography"><span class="nav-index">03</span>Biography</a>
+        <a class="nav-link" href="#group" data-page="group"><span class="nav-index">04</span>Group</a>
+        <a class="nav-link" href="#publications" data-page="publications"><span class="nav-index">05</span>Publications</a>
+      </nav>
+      <div class="sidebar-bottom">
+        <p class="sidebar-note"><strong id="side-institution">Hunan University of Technology</strong><span style="display:block">Zhuzhou, China</span></p>
+        <button type="button" id="edit-trigger" class="sidebar-edit" hidden>✎ 编辑我的网站</button>
+      </div>
+    </aside>
+    <div class="mobile-shade" id="mobile-shade"></div>
+    <div class="main-wrap">
+      <div class="mobile-topbar"><strong id="mobile-name">陈云 · Yun Chen</strong><button class="menu-btn" type="button" id="mobile-menu" aria-label="打开导航菜单">☰ 菜单</button></div>
+      <main id="app" class="site-content" tabindex="-1"></main>
+      <footer class="site-footer" id="footer"></footer>
+    </div>
+  </div>
+  <div class="editor-overlay" id="editor-overlay" hidden role="dialog" aria-modal="true" aria-label="可视化网站编辑器">
+    <div class="editor-panel">
+      <div class="editor-header">
+        <div class="editor-headline"><h2>编辑个人学术主页 <span class="editor-hint">实时预览</span></h2><button type="button" class="icon-button" id="editor-close" aria-label="关闭编辑面板">×</button></div>
+        <p class="editor-warning">更改先保存在当前浏览器。要让其他人也看到更新，请点击底部<strong>下载可发布网页</strong>，用下载的 <code>index.html</code> 替换网站原文件。</p>
+      </div>
+      <div class="editor-tabs" id="editor-tabs" role="tablist"></div>
+      <div class="editor-body" id="editor-body"></div>
+      <div class="editor-actions">
+        <button class="secondary-action" id="download-json" type="button">备份内容 JSON</button>
+        <button class="primary-action" id="download-html" type="button">↓ 下载可发布网页</button>
+      </div>
+    </div>
+  </div>
+  <div id="toast" class="toast" hidden role="status"></div>
+
+  <!-- 这是全站的内容数据库。也可以通过 ?edit=1 可视化修改，再下载新版 index.html。 -->
+  <script type="application/json" id="site-config">
+{
+  "profile": {
+    "nameZh": "陈云",
+    "nameEn": "Yun Chen",
+    "titleZh": "工学博士 · 教师",
+    "titleEn": "Ph.D. · Faculty Member",
+    "institutionZh": "湖南工业大学",
+    "institutionEn": "Hunan University of Technology",
+    "departmentZh": "交通与电气工程学院",
+    "departmentEn": "School of Transportation and Electrical Engineering",
+    "cityZh": "湖南 · 株洲",
+    "cityEn": "Zhuzhou, Hunan, China",
+    "email": "",
+    "scholar": "",
+    "website": "",
+    "cvUrl": "",
+    "photo": ""
+  },
+  "home": {
+    "introZh": "陈云，工学博士，现任教于湖南工业大学交通与电气工程学院。主要研究兴趣包括网络化系统的安全远程状态估计、时滞系统稳定性分析与数据驱动控制。近年来，关注信息物理系统中的隐私保护、反窃听传输策略及其在网络化储能系统中的应用。",
+    "recruitZh": "欢迎对网络化控制、状态估计、信息物理系统安全和数据驱动控制感兴趣的同学联系交流。",
+    "news": [
+      { "date": "研究方向", "title": "安全远程状态估计与反窃听传输策略", "description": "聚焦不可靠通信与窃听威胁下的信息传输和估计性能。" },
+      { "date": "学术交流", "title": "欢迎相关方向的研究生及同行联系交流", "description": "研究兴趣包括时滞系统、网络化控制与信息物理系统安全。" }
+    ]
+  },
+  "welcome": {
+    "introEn": "I am Yun Chen, a faculty member at the School of Transportation and Electrical Engineering, Hunan University of Technology. My research interests include secure remote state estimation, networked control, time-delay systems, and data-driven control. I am particularly interested in security and privacy of cyber-physical systems and their applications to networked energy storage systems.",
+    "recruitEn": "Students and collaborators interested in networked estimation and control, cyber-physical security, or data-driven control are welcome to get in touch."
+  },
+  "research": [
+    { "titleZh": "安全远程状态估计与反窃听", "titleEn": "Secure Remote State Estimation", "descriptionZh": "窃听威胁下的传输策略、隐私保护与估计性能。", "descriptionEn": "Privacy-aware transmission and estimation under eavesdropping threats." },
+    { "titleZh": "网络化控制与信息物理系统安全", "titleEn": "Networked Control and CPS Security", "descriptionZh": "非理想通信、攻击防御与安全性分析。", "descriptionEn": "Network imperfections, attack-defense mechanisms, and security analysis." },
+    { "titleZh": "时滞系统与稳定性理论", "titleEn": "Time-Delay Systems and Stability", "descriptionZh": "Lyapunov–Krasovskii 泛函、低保守性稳定判据。", "descriptionEn": "Lyapunov–Krasovskii functionals and less conservative stability criteria." },
+    { "titleZh": "数据驱动控制与储能应用", "titleEn": "Data-Driven Control and Energy Storage", "descriptionZh": "数据驱动鲁棒控制、网络化储能状态估计及验证。", "descriptionEn": "Data-driven robust control and networked energy-storage applications." }
+  ],
+  "biography": {
+    "introZh": "研究工作围绕网络化估计与控制、信息物理系统安全以及时滞系统稳定性分析展开。",
+    "employment": [
+      { "period": "2026 — 至今", "titleZh": "湖南工业大学 · 教学科研岗", "titleEn": "Faculty Member, Hunan University of Technology", "detailZh": "交通与电气工程学院", "detailEn": "School of Transportation and Electrical Engineering" }
+    ],
+    "education": [
+      { "period": "2021 — 2026", "titleZh": "东北大学 · 博士", "titleEn": "Ph.D., Northeastern University", "detailZh": "研究方向：信息物理系统安全远程状态估计", "detailEn": "Secure remote state estimation of cyber-physical systems" }
+    ]
+  },
+  "group": {
+    "introZh": "围绕网络化系统状态估计、反窃听安全机制、数据驱动控制及相关工程验证开展研究。欢迎对理论研究和实验验证感兴趣的同学加入。",
+    "introEn": "We study networked state estimation, security against eavesdropping, data-driven control, and experimental validation.",
+    "openingsZh": "欢迎有志于控制理论、网络化系统安全、储能系统研究的本科生和研究生联系交流。",
+    "members": [],
+    "photos": []
+  },
+  "publications": [
+    {
+      "year": "2024",
+      "title": "Stability analysis of linear delayed systems based on an allowable delay set partitioning approach",
+      "authors": "Y. Chen, H.-B. Zeng, and Y. Li",
+      "journal": "Automatica, vol. 163, article 111603",
+      "doi": "10.1016/j.automatica.2024.111603",
+      "url": "https://doi.org/10.1016/j.automatica.2024.111603",
+      "highlight": true
+    },
+    {
+      "year": "2024",
+      "title": "Strategic Information Transmission Against Malicious Eavesdropper and Semihonest Estimator: A Tripartite Game Analysis",
+      "authors": "Y. Chen, F. Qu, Y. Ni, and Y. Li",
+      "journal": "IEEE Transactions on Control of Network Systems, vol. 11, no. 4, pp. 1825–1834",
+      "doi": "10.1109/TCNS.2024.3354886",
+      "url": "https://doi.org/10.1109/TCNS.2024.3354886",
+      "highlight": true
+    },
+    {
+      "year": "2024",
+      "title": "Hierarchical admissibility criteria for T-S fuzzy singular systems with time-varying delay",
+      "authors": "Y. Chen and G. Chen",
+      "journal": "Fuzzy Sets and Systems, vol. 492, article 109065",
+      "doi": "10.1016/j.fss.2024.109065",
+      "url": "https://doi.org/10.1016/j.fss.2024.109065",
+      "highlight": true
+    },
+    {
+      "year": "2019",
+      "title": "Stability Analysis of Systems With Time-varying Delay via a Novel Lyapunov Functional",
+      "authors": "Y. Chen and G. Chen",
+      "journal": "IEEE/CAA Journal of Automatica Sinica, vol. 6, no. 4, pp. 1068–1073",
+      "doi": "10.1109/JAS.2019.1911597",
+      "url": "https://doi.org/10.1109/JAS.2019.1911597",
+      "highlight": true
+    }
+  ],
+  "customSections": [],
+  "settings": {
+    "accent": "#245b91",
+    "navHome": "主页 / Home",
+    "navWelcome": "Welcome",
+    "navBiography": "Biography",
+    "navGroup": "Group",
+    "navPublications": "Publications"
+  }
+}
+  </script>
+  <script>
+    (() => {
+      'use strict';
+      const CONFIG_EL = document.getElementById('site-config');
+      const embeddedText = CONFIG_EL.textContent.trim();
+      const DEFAULT_DATA = JSON.parse(embeddedText);
+      const storageHash = (s) => { let x = 2166136261; for (let i=0;i<s.length;i++) { x ^= s.charCodeAt(i); x = Math.imul(x,16777619); } return (x>>>0).toString(16); };
+      const STORAGE_KEY = 'yunchen_academic_site_draft_' + storageHash(embeddedText);
+      const clone = obj => JSON.parse(JSON.stringify(obj));
+      let data = clone(DEFAULT_DATA);
+      try { const stored = localStorage.getItem(STORAGE_KEY); if (stored) data = JSON.parse(stored); } catch(e) { /* file:/// browsers may disable storage; editor still works */ }
+      let page = 'home', editorTab = 'basic', paperFilter = 'all';
+      const PAGE_IDS = ['home','welcome','biography','group','publications'];
+      const TABS = [
+        {id:'basic', label:'个人信息'},
+        {id:'home', label:'中文主页'},
+        {id:'welcome', label:'English'},
+        {id:'research', label:'研究方向'},
+        {id:'biography', label:'个人履历'},
+        {id:'group', label:'课题组'},
+        {id:'publications', label:'发表论文'},
+        {id:'custom', label:'自定义 / 外观'},
+        {id:'data', label:'备份与发布'}
+      ];
+      const el = (id) => document.getElementById(id);
+      const escapeHtml = (s) => String(s ?? '').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#39;');
+      const safeUrl = (s, image = false) => { const u = String(s||'').trim(); if (/^https?:\/\//i.test(u) || (image && /^data:image\/(png|jpeg|webp|gif);base64,/i.test(u))) return u; return ''; };
+      const e = escapeHtml;
+      const para = s => e(s).replace(/\n/g,'<br>');
+      const has = value => typeof value==='string' && value.trim().length > 0;
+      function get(path) { return path.split('.').reduce((o,k)=>o?.[k], data); }
+      function set(path,v) {
+        const parts=path.split('.'); let t=data;
+        for(let i=0;i<parts.length-1;i++) t=t[parts[i]];
+        t[parts[parts.length-1]]=v;
+        saveDraft(); render();
+      }
+      function saveDraft() { try { localStorage.setItem(STORAGE_KEY,JSON.stringify(data)); } catch(e) { /* work without persistence */ } }
+      function toast(message) { const box=el('toast'); box.textContent=message; box.hidden=false; clearTimeout(toast.timer); toast.timer=setTimeout(()=>box.hidden=true,3400); }
+      function section(title,en='',right='') { return `<section class="section"><div class="section-head"><h2 class="section-title">${e(title)}${en?`<small>${e(en)}</small>`:''}</h2>${right?`<span class="section-subnote">${e(right)}</span>`:''}</div>`; }
+      function finish() { return '</section>'; }
+      function customSections(which) {
+        return (data.customSections||[]).filter(x=>x.page===which).map(x => section(x.titleZh || x.titleEn, x.titleEn && x.titleZh ? x.titleEn:'') + `<div class="custom-body">${para(which==='welcome'?(x.bodyEn||x.bodyZh):(x.bodyZh||x.bodyEn))}</div>`+finish()).join('');
+      }
+      function mailHtml(english=false) { return has(data.profile.email)?`<a href="mailto:${e(data.profile.email)}">${e(data.profile.email)}</a>`:`<span class="soft-link">${english?'Not listed':'暂未公开'}</span>`; }
+      function photoHtml() { const src=safeUrl(data.profile.photo,true); return `<div class="hero-photo"><div class="hero-photo-inner">${src?`<img src="${e(src)}" alt="${e(data.profile.nameZh)} 的个人照片">`:`<div class="photo-placeholder" aria-label="照片占位图">${e((data.profile.nameEn||'YC').split(' ').map(s=>s[0]||'').join('').slice(0,2).toUpperCase())}</div>`}</div></div>`; }
+      function contactHtml(english=false) {
+        let s=`<div class="contact-stack">`;
+        s+=`<div class="contact-row"><span class="contact-label">${english?'Email':'邮箱'}</span><span class="contact-value">${mailHtml(english)}</span></div>`;
+        s+=`<div class="contact-row"><span class="contact-label">${english?'Location':'地点'}</span><span class="contact-value">${e(english?data.profile.cityEn:data.profile.cityZh)}</span></div>`;
+        if(safeUrl(data.profile.scholar)) s+=`<div class="contact-row"><span class="contact-label">Scholar</span><span class="contact-value"><a href="${e(safeUrl(data.profile.scholar))}" target="_blank" rel="noopener noreferrer">Google Scholar ↗</a></span></div>`;
+        if(safeUrl(data.profile.cvUrl)) s+=`<div class="contact-row"><span class="contact-label">CV</span><span class="contact-value"><a href="${e(safeUrl(data.profile.cvUrl))}" target="_blank" rel="noopener noreferrer">${english?'Curriculum Vitae':'个人简历 PDF'} ↗</a></span></div>`;
+        if(safeUrl(data.profile.website)) s+=`<div class="contact-row"><span class="contact-label">Website</span><span class="contact-value"><a href="${e(safeUrl(data.profile.website))}" target="_blank" rel="noopener noreferrer">${e(data.profile.website)} ↗</a></span></div>`;
+        return s+'</div>';
+      }
+      function hero(english=false) {
+        const p=data.profile;
+        return `<div class="hero"><div><h1>${e(english?p.nameEn:p.nameZh)} <small>${e(english?p.nameZh:p.nameEn)}</small></h1>
+        <p class="hero-role">${e(english?p.titleEn:p.titleZh)}</p>
+        <p class="hero-affil">${e(english?p.departmentEn:p.departmentZh)}<br>${e(english?p.institutionEn:p.institutionZh)}</p>
+        ${contactHtml(english)}</div>${photoHtml()}</div>`;
+      }
+      function researchHtml(english=false) {
+        return section(english?'Research Interests':'研究领域',english?'':'Research Interests')+`<ul class="research-list">${(data.research||[]).map(x=>`<li class="research-item"><p class="research-title">${e(english?x.titleEn||x.titleZh:x.titleZh||x.titleEn)}</p><p class="research-desc">${e(english?x.descriptionEn||x.descriptionZh:x.descriptionZh||x.descriptionEn)}</p></li>`).join('')}</ul>`+finish();
+      }
+      function publicationList(items) {
+        if(!items.length) return `<p class="empty-text">暂无相关论文。</p>`;
+        return `<ol class="paper-list">${items.map(x=>{
+          const url=safeUrl(x.url) || (has(x.doi)?safeUrl('https://doi.org/'+x.doi):'');
+          return `<li class="paper-item"><p class="paper-title">${e(x.title)}</p><p class="paper-authors">${e(x.authors)}</p><div class="paper-meta"><span class="paper-journal">${e(x.journal)}</span><span class="paper-year">${e(x.year)}</span>${x.highlight?'<span class="paper-badge">Selected</span>':''}${url?`<a class="paper-link" href="${e(url)}" target="_blank" rel="noopener noreferrer">[Paper ↗]</a>`:''}</div></li>`;
+        }).join('')}</ol>`;
+      }
+      function publicationsPreview() {
+        const items=(data.publications||[]).filter(x=>x.highlight).slice(0,3);
+        return items.length ? section('代表性论文','Selected Publications', '精选') + publicationList(items) + `<a class="academic-link" href="#publications">查看全部发表论文</a>` + finish() : '';
+      }
+      function homePage() {
+        let s=`<div class="topline">Academic Homepage · 个人学术主页</div>${hero()}<div class="title-rule"></div>`;
+        s+=section('个人简介','About')+`<p class="intro">${para(data.home.introZh)}</p>`+finish();
+        if((data.home.news||[]).length) s+=section('最新动态','News')+`<ul class="news-list">${data.home.news.map(x=>`<li><span class="news-date">${e(x.date)}</span><span class="news-text">${e(x.title)}${has(x.description)?`<span class="news-desc">${e(x.description)}</span>`:''}</span></li>`).join('')}</ul>`+finish();
+        s+=researchHtml();
+        if(has(data.home.recruitZh)) s+=`<div class="recruit"><strong>交流与招生 / Opportunities</strong><p>${para(data.home.recruitZh)}</p></div>`;
+        s+=publicationsPreview(); s+=customSections('home'); return s;
+      }
+      function welcomePage() {
+        let s=`<div class="topline">English Profile</div><h1 class="page-title">Welcome to ${e(data.profile.nameEn)}'s Homepage</h1><p class="page-deck">Research · Publications · Academic Collaboration</p><div class="title-rule"></div>`;
+        s+=hero(true);
+        s+=section('About Me')+`<p class="intro">${para(data.welcome.introEn)}</p>`+finish();
+        s+=researchHtml(true);
+        if(has(data.welcome.recruitEn)) s+=section('Openings')+`<div class="recruit" style="margin-top:0"><p>${para(data.welcome.recruitEn)}</p></div>`+finish();
+        s+=customSections('welcome'); return s;
+      }
+      function timelineHtml(items,english=false) { return `<div class="timeline">${items.length?items.map(x=>`<div class="timeline-item"><span class="timeline-time">${e(x.period)}</span><div><h3 class="timeline-title">${e(english?x.titleEn||x.titleZh:x.titleZh||x.titleEn)}</h3><p class="timeline-detail">${e(english?x.detailEn||x.detailZh:x.detailZh||x.detailEn)}</p></div></div>`).join(''):'<p class="empty-text">该栏目尚未添加内容。</p>'}</div>`; }
+      function biographyPage() {
+        let s=`<div class="topline">Academic Biography</div><h1 class="page-title">个人履历 <span class="en">Biography</span></h1><p class="page-deck">Education, Academic Appointments & Research Background</p><div class="title-rule"></div>`;
+        if(has(data.biography.introZh)) s+=`<p class="intro">${para(data.biography.introZh)}</p>`;
+        s+=section('工作经历','Employment')+timelineHtml(data.biography.employment||[])+finish();
+        s+=section('教育经历','Education')+timelineHtml(data.biography.education||[])+finish();
+        s+=customSections('biography'); return s;
+      }
+      function groupPage() {
+        let s=`<div class="topline">Research Group</div><h1 class="page-title">课题组 <span class="en">Group</span></h1><p class="page-deck">People · Research · Opportunities</p><div class="title-rule"></div>`;
+        s+=`<p class="intro">${para(data.group.introZh)}</p>`;
+        if(has(data.group.openingsZh)) s+=section('招生与交流','Openings')+`<div class="recruit" style="margin-top:0"><p>${para(data.group.openingsZh)}</p></div>`+finish();
+        s+=section('团队成员','Group Members')+((data.group.members||[]).length?`<div class="member-grid">${data.group.members.map(x=>`<div class="member"><span class="member-name">${e(x.name)}</span>${has(x.role)?`<span class="member-role">${e(x.role)}</span>`:''}<p class="member-note">${e([x.year,x.note].filter(Boolean).join(' · '))}</p></div>`).join('')}</div>`:`<p class="empty-text">课题组信息更新中，欢迎联系交流。</p>`)+finish();
+        if((data.group.photos||[]).some(x=>safeUrl(x.image,true))) s+=section('团队相册','Group Photos')+`<div class="gallery">${data.group.photos.filter(x=>safeUrl(x.image,true)).map(x=>`<figure class="gallery-card"><img src="${e(safeUrl(x.image,true))}" alt="${e(x.title||'团队照片')}" loading="lazy"><figcaption>${e(x.title)}</figcaption></figure>`).join('')}</div>`+finish();
+        s+=customSections('group'); return s;
+      }
+      function publicationsPage() {
+        let s=`<div class="topline">Research Output</div><h1 class="page-title">代表性论文 <span class="en">Publications</span></h1><p class="page-deck">Journal Papers · Selected Research Works</p><div class="title-rule"></div>`;
+        s+=`<p class="intro">以下列出部分代表性期刊论文；点击论文后的 Paper 链接可访问正式发表版本。</p>`;
+        const pubs=data.publications||[];
+        const years=[...new Set(pubs.map(x=>String(x.year)))].sort((a,b)=>Number(b)-Number(a));
+        s+=`<div class="section" style="margin-top:23px"><div class="paper-controls" aria-label="论文年份筛选"><button type="button" data-filter="all" class="filter-btn ${paperFilter==='all'?'is-active':''}">全部 (${pubs.length})</button>${years.map(y=>`<button type="button" data-filter="${e(y)}" class="filter-btn ${paperFilter===y?'is-active':''}">${e(y)}</button>`).join('')}</div>${publicationList(pubs.filter(x=>paperFilter==='all'||String(x.year)===paperFilter))}</div>`;
+        s+=customSections('publications');return s;
+      }
+      function render() {
+        if(!PAGE_IDS.includes(page)) page='home';
+        const accent=/^#[0-9a-fA-F]{6}$/.test(data.settings?.accent||'')?data.settings.accent:'#245b91';
+        document.documentElement.style.setProperty('--primary',accent);
+        document.title=`${data.profile.nameZh} ${data.profile.nameEn} | Academic Homepage`;
+        document.querySelector('meta[name="description"]').content=`${data.profile.nameZh} ${data.profile.nameEn} 的个人学术主页：研究兴趣、个人履历、课题组及代表性论文。`;
+        const routes={home:homePage,welcome:welcomePage,biography:biographyPage,group:groupPage,publications:publicationsPage};
+        el('app').innerHTML=routes[page]();
+        el('brand-name').innerHTML=`${e(data.profile.nameZh)} <span style="font-weight:400">${e(data.profile.nameEn)}</span>`;
+        el('side-institution').textContent=data.profile.institutionEn;
+        el('mobile-name').textContent=data.profile.nameZh+' · '+data.profile.nameEn;
+        const labels={home:data.settings.navHome,welcome:data.settings.navWelcome,biography:data.settings.navBiography,group:data.settings.navGroup,publications:data.settings.navPublications};
+        document.querySelectorAll('.nav-link').forEach(a=>{
+          const id=a.dataset.page; a.classList.toggle('active',page===id); a.setAttribute('aria-current',page===id?'page':'false');
+          a.innerHTML=`<span class="nav-index">${String(PAGE_IDS.indexOf(id)+1).padStart(2,'0')}</span>${e(labels[id])}`;
+        });
+        el('footer').innerHTML=`<span>© ${new Date().getFullYear()} <strong>${e(data.profile.nameEn)} · ${e(data.profile.institutionEn)}</strong></span><span>Research · Estimation · Control · Security</span>`;
+        el('app').querySelectorAll('[data-filter]').forEach(b=>b.addEventListener('click',()=>{paperFilter=b.dataset.filter; render();}));
+      }
+      function closeMobile() { el('sidebar').classList.remove('is-open'); el('mobile-shade').classList.remove('is-open'); }
+      function route() {
+        const current=location.hash.replace('#',''); page=PAGE_IDS.includes(current)?current:'home';
+        paperFilter='all'; closeMobile();render(); window.scrollTo({top:0,behavior:'instant'});
+      }
+      el('mobile-menu').addEventListener('click',()=>{el('sidebar').classList.toggle('is-open');el('mobile-shade').classList.toggle('is-open');});
+      el('mobile-shade').addEventListener('click',closeMobile);
+      addEventListener('hashchange',route);
+      function field(label,path,{textarea=false,rows=3,placeholder='',type='text',hint='',opts=null}={}) {
+        const v=get(path);
+        if(/^group\.photos\.\d+\.image$/.test(path) && typeof v==='string' && v.startsWith('data:image/')) return `<div class="edit-field"><label>${e(label)}</label><img class="edit-preview" src="${e(safeUrl(v,true))}" alt="照片预览"><small>图片已嵌入网页。可在下方上传新照片替换。</small><button type="button" class="small-btn danger" data-clear-photo="${e(path)}">清除图片</button></div>`;
+        const id='f-'+path.replace(/[^a-zA-Z0-9]/g,'-');
+        let input;
+        if(opts) input=`<select id="${id}" data-path="${e(path)}">${opts.map(x=>`<option value="${e(x.value)}" ${String(v)===x.value?'selected':''}>${e(x.label)}</option>`).join('')}</select>`;
+        else if(textarea) input=`<textarea id="${id}" rows="${rows}" data-path="${e(path)}" placeholder="${e(placeholder)}">${e(v)}</textarea>`;
+        else input=`<input id="${id}" data-path="${e(path)}" type="${e(type)}" value="${e(v)}" placeholder="${e(placeholder)}">`;
+        return `<div class="edit-field"><label for="${id}">${e(label)}</label>${input}${hint?`<small>${e(hint)}</small>`:''}</div>`;
+      }
+      function listEditor(path,heading,fields,newItem) {
+        const items=get(path)||[];
+        let s=`<h3 class="edit-group-title">${e(heading)} (${items.length})</h3><div class="edit-list">`;
+        s+=items.map((item,index)=>{
+          let c=`<div class="edit-item"><div class="edit-item-top"><b>第 ${index+1} 项</b><div><button type="button" data-move="${e(path)}" data-i="${index}" data-d="-1" class="small-btn" title="上移">↑</button><button type="button" data-move="${e(path)}" data-i="${index}" data-d="1" class="small-btn" title="下移">↓</button><button type="button" data-delete="${e(path)}" data-i="${index}" class="small-btn danger">删除</button></div></div>`;
+          c+=fields.map(f=>field(f.label,`${path}.${index}.${f.key}`,f.options||{})).join('');
+          if(path==='publications') c+=`<div class="edit-field"><label><input type="checkbox" data-check="publications.${index}.highlight" ${item.highlight?'checked':''}> 设为代表性论文（显示在首页）</label></div>`;
+          if(path==='group.photos') c+=`<div class="edit-field"><label>从电脑上传照片</label><input type="file" accept="image/png,image/jpeg,image/webp" data-upload="group.photos.${index}.image"></div>`;
+          return c+'</div>';
+        }).join('');
+        return s+`</div><button type="button" class="add-btn" data-add="${e(path)}">+ 添加${e(heading)}</button><div style="height:24px"></div>`;
+      }
+      const schemas={
+        news:{label:'最新动态',sample:{date:'2026.10',title:'请输入动态标题',description:''},fields:[{key:'date',label:'时间 / 分类'},{key:'title',label:'动态标题'},{key:'description',label:'附加说明',options:{textarea:true,rows:2}}]},
+        research:{label:'研究方向',sample:{titleZh:'新研究方向',titleEn:'New Research Area',descriptionZh:'',descriptionEn:''},fields:[{key:'titleZh',label:'中文名称'},{key:'titleEn',label:'英文名称'},{key:'descriptionZh',label:'中文描述',options:{textarea:true,rows:2}},{key:'descriptionEn',label:'英文描述',options:{textarea:true,rows:2}}]},
+        employment:{label:'工作经历',sample:{period:'时间范围',titleZh:'新单位 / 职务',titleEn:'Position / Institution',detailZh:'',detailEn:''},fields:[{key:'period',label:'时间范围'},{key:'titleZh',label:'中文职位 / 单位'},{key:'titleEn',label:'英文职位 / 单位'},{key:'detailZh',label:'中文详情'},{key:'detailEn',label:'英文详情'}]},
+        education:{label:'教育经历',sample:{period:'时间范围',titleZh:'学校 · 学位',titleEn:'Degree / Institution',detailZh:'',detailEn:''},fields:[{key:'period',label:'时间范围'},{key:'titleZh',label:'中文学校 / 学位'},{key:'titleEn',label:'英文学校 / 学位'},{key:'detailZh',label:'中文详情'},{key:'detailEn',label:'英文详情'}]},
+        members:{label:'团队成员',sample:{name:'新成员',role:'研究生',year:'2026',note:''},fields:[{key:'name',label:'姓名'},{key:'role',label:'身份'},{key:'year',label:'年份'},{key:'note',label:'备注',options:{textarea:true,rows:2}}]},
+        photos:{label:'团队照片',sample:{image:'',title:'照片说明'},fields:[{key:'title',label:'图片说明'},{key:'image',label:'图片网址或内嵌图片',options:{hint:'可粘贴 https:// 图片网址，或使用下面的上传按钮。'}}]},
+        publications:{label:'论文',sample:{year:'2026',title:'论文标题',authors:'作者',journal:'期刊，卷(期)，页码',doi:'',url:'',highlight:false},fields:[{key:'year',label:'发表年份'},{key:'title',label:'论文英文题目',options:{textarea:true,rows:2}},{key:'authors',label:'作者'},{key:'journal',label:'期刊与卷页',options:{textarea:true,rows:2}},{key:'doi',label:'DOI'},{key:'url',label:'论文链接 (https://...)'}]},
+        customSections:{label:'自定义板块',sample:{page:'home',titleZh:'新的栏目',titleEn:'New Section',bodyZh:'在这里输入内容。',bodyEn:''},fields:[{key:'page',label:'显示在哪个页面',options:{opts:[{value:'home',label:'中文主页'},{value:'welcome',label:'Welcome'},{value:'biography',label:'Biography'},{value:'group',label:'Group'},{value:'publications',label:'Publications'}]}},{key:'titleZh',label:'中文标题'},{key:'titleEn',label:'英文标题'},{key:'bodyZh',label:'中文内容',options:{textarea:true,rows:4}},{key:'bodyEn',label:'英文内容',options:{textarea:true,rows:4}}]}
+      };
+      function list(path,key) { const schema=schemas[key]; return listEditor(path,schema.label,schema.fields,schema.sample); }
+      function photoInput(label,path) {const v=get(path);return `<div class="edit-field"><label>${e(label)}</label>${safeUrl(v,true)?`<img class="edit-preview" src="${e(safeUrl(v,true))}" alt="照片预览">`:''}<div class="file-pick"><input type="file" accept="image/png,image/jpeg,image/webp" data-upload="${e(path)}"><button type="button" class="small-btn danger" data-clear-photo="${e(path)}">清除图片</button></div><small>照片会压缩并嵌入网页文件；无需再上传单独的图片。支持 JPG / PNG / WebP。</small></div>`;}
+      function renderEditorBody() {
+        let s='';
+        switch(editorTab) {
+          case 'basic':
+            s=`<h3 class="edit-group-title">姓名与身份</h3><div class="edit-row">${field('中文姓名','profile.nameZh')}${field('英文姓名','profile.nameEn')}</div><div class="edit-row">${field('中文职位','profile.titleZh')}${field('英文职位','profile.titleEn')}</div>`;
+            s+=`<h3 class="edit-group-title">工作单位</h3>${field('中文学校','profile.institutionZh')}${field('英文学校','profile.institutionEn')}${field('中文学院','profile.departmentZh')}${field('英文学院','profile.departmentEn')}<div class="edit-row">${field('中文地区','profile.cityZh')}${field('英文地区','profile.cityEn')}</div>`;
+            s+=`<h3 class="edit-group-title">联系方式与外部链接</h3>${field('电子邮箱','profile.email',{type:'email',placeholder:'name@university.edu'})}${field('Google Scholar 地址','profile.scholar',{type:'url',placeholder:'https://scholar.google.com/...'})}${field('其他个人网站链接','profile.website',{type:'url'})}${field('简历 PDF 链接','profile.cvUrl',{type:'url'})}`;
+            s+=`<h3 class="edit-group-title">个人照片</h3>${photoInput('上传替换照片','profile.photo')}`;
+            break;
+          case 'home':
+            s=`<h3 class="edit-group-title">中文简介</h3>${field('个人简介段落','home.introZh',{textarea:true,rows:6})}${field('交流与招生','home.recruitZh',{textarea:true,rows:3})}`+list('home.news','news');
+            break;
+          case 'welcome':
+            s=`<h3 class="edit-group-title">English introduction</h3>${field('About Me','welcome.introEn',{textarea:true,rows:7})}${field('Openings / Opportunities','welcome.recruitEn',{textarea:true,rows:4})}`;
+            break;
+          case 'research': s=list('research','research');break;
+          case 'biography':
+            s=`<h3 class="edit-group-title">履历简介</h3>${field('页面简介','biography.introZh',{textarea:true,rows:3})}`+list('biography.employment','employment')+list('biography.education','education');
+            break;
+          case 'group':
+            s=`<h3 class="edit-group-title">课题组介绍</h3>${field('中文介绍','group.introZh',{textarea:true,rows:4})}${field('English Introduction','group.introEn',{textarea:true,rows:3})}${field('招生与交流','group.openingsZh',{textarea:true,rows:3})}`;
+            s+=list('group.members','members')+list('group.photos','photos');
+            break;
+          case 'publications':
+            s=`<p class="edit-help">论文可自由增删、调整顺序。填写 DOI 或链接后，读者可以从网站直接打开原文。下方的“设为代表性论文”会控制它是否出现在主页。</p>`+list('publications','publications');
+            break;
+          case 'custom':
+            s=`<h3 class="edit-group-title">菜单文字</h3>${field('主页','settings.navHome')}${field('Welcome','settings.navWelcome')}${field('Biography','settings.navBiography')}${field('Group','settings.navGroup')}${field('Publications','settings.navPublications')}`;
+            s+=`<h3 class="edit-group-title">网站主色</h3>${field('蓝色主题色','settings.accent',{type:'color',hint:'可以自定义成任何颜色，默认学术蓝。'})}`;
+            s+=`<p class="edit-help">需要增加科研项目、专利、获奖或任何其他内容？下面可自由添加栏目，并指定它出现在五个页面中的哪一个。</p>`+list('customSections','customSections');
+            break;
+          case 'data':
+            s=`<h3 class="edit-group-title">备份 / 恢复 / 网站发布</h3><div class="action-stack">
+              <div class="action-card"><h3>① 下载包含所有修改的网页</h3><p>下载一个完整的 <code>index.html</code>；照片和全部内容均打包在里面。无需服务器、数据库或额外软件。</p><button type="button" data-action="html" class="primary-action">下载 index.html</button></div>
+              <div class="action-card"><h3>② 备份网站内容</h3><p>把所有文本、论文、链接、照片备份成 JSON 文件，方便以后恢复、迁移到其他电脑。</p><button type="button" data-action="json">下载 JSON 备份</button></div>
+              <div class="action-card"><h3>③ 从备份恢复内容</h3><p>选择此前导出的 JSON，整站会立即载入并预览；建议先备份当前内容。</p><input type="file" id="import-json" accept="application/json,.json" style="max-width:100%"></div>
+              <div class="action-card"><h3>④ 撤销所有本地编辑</h3><p>清除这个浏览器的草稿，回到网页文件内嵌的最初内容。此操作不可撤销。</p><button type="button" data-action="reset" class="small-btn danger">恢复初始版本</button></div>
+            </div><div class="hint-box">发布到 GitHub Pages：新建个人主页仓库（如 <code>username.github.io</code>），上传下载的 <code>index.html</code>，开启 Pages。以后每次编辑后，只需重新上传该文件。浏览器内的修改<strong>不会自动影响线上网站</strong>。</div>`;
+            break;
+        }
+        el('editor-body').innerHTML=s;
+        attachEditorFieldEvents();
+      }
+      function attachEditorFieldEvents() {
+        el('editor-body').querySelectorAll('[data-path]').forEach(node=>node.addEventListener('input',()=>set(node.dataset.path,node.value)));
+        el('editor-body').querySelectorAll('[data-check]').forEach(node=>node.addEventListener('change',()=>set(node.dataset.check,node.checked)));
+        el('editor-body').querySelectorAll('[data-add]').forEach(node=>node.addEventListener('click',()=>{const path=node.dataset.add, schemaKey=path.split('.').pop();get(path).push(clone(schemas[schemaKey].sample));saveDraft();render();renderEditorBody();el('editor-body').scrollTop=el('editor-body').scrollHeight;}));
+        el('editor-body').querySelectorAll('[data-delete]').forEach(node=>node.addEventListener('click',()=>{if(!confirm('确定删除这一项吗？'))return;get(node.dataset.delete).splice(Number(node.dataset.i),1);saveDraft();render();renderEditorBody();}));
+        el('editor-body').querySelectorAll('[data-move]').forEach(node=>node.addEventListener('click',()=>{const a=get(node.dataset.move),i=Number(node.dataset.i),j=i+Number(node.dataset.d);if(j<0||j>=a.length)return;[a[i],a[j]]=[a[j],a[i]];saveDraft();render();renderEditorBody();}));
+        el('editor-body').querySelectorAll('[data-upload]').forEach(node=>node.addEventListener('change',async()=>{
+          if(!node.files?.length)return;
+          try {const image=await resizeImage(node.files[0]);set(node.dataset.upload,image);renderEditorBody();toast('照片已加入当前页面。记得下载新版 index.html。');}
+          catch(err){ alert('图片无法读取。请上传 JPG、PNG 或 WebP 图片。'); }
+        }));
+        el('editor-body').querySelectorAll('[data-clear-photo]').forEach(node=>node.addEventListener('click',()=>{set(node.dataset.clearPhoto,'');renderEditorBody();}));
+        el('editor-body').querySelectorAll('[data-action]').forEach(node=>node.addEventListener('click',()=>{
+          const a=node.dataset.action;if(a==='html')downloadHtml();if(a==='json')downloadJson();if(a==='reset')resetDraft();
+        }));
+        const input=el('import-json');if(input)input.addEventListener('change',async()=>{
+          if(!input.files?.length)return;
+          try {const parsed=JSON.parse(await input.files[0].text());if(!parsed.profile||!Array.isArray(parsed.publications)||!parsed.settings)throw Error('bad structure');
+            data=parsed;saveDraft();render();renderEditorBody();toast('备份已成功导入');}
+          catch(err){alert('JSON 备份格式不正确，导入未完成。');}
+        });
+      }
+      function resizeImage(file) {
+        return new Promise((resolve,reject)=>{
+          if(file.size>25*1024*1024)return reject(Error('too large'));
+          const reader=new FileReader();reader.onerror=reject;
+          reader.onload=()=>{
+            const image=new Image();image.onerror=reject;image.onload=()=>{
+              const longest=Math.max(image.width,image.height),factor=Math.min(1,1100/longest),canvas=document.createElement('canvas');
+              canvas.width=Math.max(1,Math.round(image.width*factor));canvas.height=Math.max(1,Math.round(image.height*factor));
+              const ctx=canvas.getContext('2d');ctx.fillStyle='#fff';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.drawImage(image,0,0,canvas.width,canvas.height);
+              resolve(canvas.toDataURL('image/jpeg',.82));
+            };image.src=reader.result;
+          };reader.readAsDataURL(file);
+        });
+      }
+      function download(filename,mime,content) {const blob=new Blob([content],{type:mime});const href=URL.createObjectURL(blob);const a=document.createElement('a');a.href=href;a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(href),2000);}
+      function serializable() {return JSON.stringify(data,null,2).replace(/</g,'\\u003c').replace(/>/g,'\\u003e').replace(/&/g,'\\u0026');}
+      function downloadJson() {download('academic-homepage-content.json','application/json;charset=utf-8',JSON.stringify(data,null,2));toast('内容备份已下载');}
+      function downloadHtml() {
+        const root=document.documentElement.cloneNode(true);
+        root.querySelector('#site-config').textContent='\n'+serializable()+'\n  ';
+        root.querySelector('#app').innerHTML='';
+        root.querySelector('#editor-body').innerHTML='';root.querySelector('#editor-tabs').innerHTML='';
+        root.querySelector('#editor-overlay').setAttribute('hidden','');
+        root.querySelector('#toast').setAttribute('hidden','');
+        root.querySelector('#sidebar').classList.remove('is-open');root.querySelector('#mobile-shade').classList.remove('is-open');
+        root.removeAttribute('style');
+        download('index.html','text/html;charset=utf-8','<!DOCTYPE html>\n'+root.outerHTML);
+        toast('网站文件已下载！将 index.html 上传到 GitHub Pages 即可发布更新。');
+      }
+      function resetDraft() {
+        if(!confirm('确定清除当前浏览器中的所有修改，恢复网页初始内容？'))return;
+        data=clone(DEFAULT_DATA);try{localStorage.removeItem(STORAGE_KEY);}catch(e){}render();renderEditorBody();toast('已恢复初始版本');
+      }
+      function renderEditorTabs() {
+        el('editor-tabs').innerHTML=TABS.map(x=>`<button type="button" role="tab" aria-selected="${x.id===editorTab}" data-tab="${x.id}" class="editor-tab ${x.id===editorTab?'selected':''}">${e(x.label)}</button>`).join('');
+        el('editor-tabs').querySelectorAll('[data-tab]').forEach(b=>b.addEventListener('click',()=>{editorTab=b.dataset.tab;renderEditorTabs();renderEditorBody();el('editor-body').scrollTop=0;}));
+      }
+      function openEditor() {el('editor-overlay').hidden=false;document.body.style.overflow='hidden';renderEditorTabs();renderEditorBody();}
+      function closeEditor() {el('editor-overlay').hidden=true;document.body.style.overflow='';}
+      el('editor-close').addEventListener('click',closeEditor);
+      el('editor-overlay').addEventListener('click',(event)=>{if(event.target===el('editor-overlay'))closeEditor();});
+      el('edit-trigger').addEventListener('click',openEditor);
+      el('download-json').addEventListener('click',downloadJson);
+      el('download-html').addEventListener('click',downloadHtml);
+      document.addEventListener('keydown',event=>{
+        if(event.key==='Escape'&&!el('editor-overlay').hidden)closeEditor();
+        if(event.key.toLowerCase()==='e'&&event.shiftKey&&(event.metaKey||event.ctrlKey)){event.preventDefault();openEditor();}
+      });
+      const editorEnabled=location.protocol==='file:'||new URLSearchParams(location.search).get('edit')==='1';
+      if(editorEnabled)el('edit-trigger').hidden=false;
+      route();
+    })();
+  </script>
+</body>
+</html>
