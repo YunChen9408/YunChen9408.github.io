@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN"><head>
+<html lang="zh-CN" data-public-version="true"><head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="陈云 Yun Chen 的个人学术主页：研究兴趣、个人履历、课题组及代表性论文。">
@@ -214,7 +214,7 @@
     @media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } .sidebar { transition:none; } }
   </style>
 </head>
-<body style="overflow: hidden;">
+<body>
   <div class="layout">
     <aside class="sidebar" id="sidebar" aria-label="主导航">
       <a href="#home" class="brand" id="brand-home">
@@ -224,15 +224,15 @@
       </a>
       <div class="sidebar-label">Navigation / 导航</div>
       <nav class="nav" id="nav">
-        <a class="nav-link active" href="#home" data-page="home" aria-current="page"><span class="nav-index">01</span>主页 / Home</a>
+        <a class="nav-link" href="#home" data-page="home" aria-current="false"><span class="nav-index">01</span>主页 / Home</a>
         <a class="nav-link" href="#welcome" data-page="welcome" aria-current="false"><span class="nav-index">02</span>Welcome</a>
-        <a class="nav-link" href="#biography" data-page="biography" aria-current="false"><span class="nav-index">03</span>Biography</a>
+        <a class="nav-link active" href="#biography" data-page="biography" aria-current="page"><span class="nav-index">03</span>Biography</a>
         <a class="nav-link" href="#group" data-page="group" aria-current="false"><span class="nav-index">04</span>Group</a>
         <a class="nav-link" href="#publications" data-page="publications" aria-current="false"><span class="nav-index">05</span>Publications</a>
       </nav>
       <div class="sidebar-bottom">
         <p class="sidebar-note"><strong id="side-institution">Hunan University of Technology</strong><span style="display:block">Zhuzhou, China</span></p>
-        <button type="button" id="edit-trigger" class="sidebar-edit">✎ 编辑我的网站</button>
+        
       </div>
     </aside>
     <div class="mobile-shade" id="mobile-shade"></div>
@@ -407,6 +407,7 @@
   <script>
     (() => {
       'use strict';
+      const IS_PUBLIC = document.documentElement.dataset.publicVersion === 'true';
       const CONFIG_EL = document.getElementById('site-config');
       const embeddedText = CONFIG_EL.textContent.trim();
       const DEFAULT_DATA = JSON.parse(embeddedText);
@@ -414,7 +415,7 @@
       const STORAGE_KEY = 'yunchen_academic_site_draft_' + storageHash(embeddedText);
       const clone = obj => JSON.parse(JSON.stringify(obj));
       let data = clone(DEFAULT_DATA);
-      try { const stored = localStorage.getItem(STORAGE_KEY); if (stored) data = JSON.parse(stored); } catch(e) { /* file:/// browsers may disable storage; editor still works */ }
+      try { if (!IS_PUBLIC) { const stored = localStorage.getItem(STORAGE_KEY); if (stored) data = JSON.parse(stored); } } catch(e) { /* file:/// browsers may disable storage; editor still works */ }
       let page = 'home', editorTab = 'basic', paperFilter = 'all';
       const PAGE_IDS = ['home','welcome','biography','group','publications'];
       const TABS = [
@@ -441,7 +442,7 @@
         t[parts[parts.length-1]]=v;
         saveDraft(); render();
       }
-      function saveDraft() { try { localStorage.setItem(STORAGE_KEY,JSON.stringify(data)); } catch(e) { /* work without persistence */ } }
+      function saveDraft() { if (IS_PUBLIC) return; try { localStorage.setItem(STORAGE_KEY,JSON.stringify(data)); } catch(e) { /* work without persistence */ } }
       function toast(message) { const box=el('toast'); box.textContent=message; box.hidden=false; clearTimeout(toast.timer); toast.timer=setTimeout(()=>box.hidden=true,3400); }
       function section(title,en='',right='') { return `<section class="section"><div class="section-head"><h2 class="section-title">${e(title)}${en?`<small>${e(en)}</small>`:''}</h2>${right?`<span class="section-subnote">${e(right)}</span>`:''}</div>`; }
       function finish() { return '</section>'; }
@@ -666,14 +667,18 @@
       function downloadHtml() {
         const root=document.documentElement.cloneNode(true);
         root.querySelector('#site-config').textContent='\n'+serializable()+'\n  ';
+        root.dataset.publicVersion='true';
+        root.querySelector('#edit-trigger')?.remove();
         root.querySelector('#app').innerHTML='';
         root.querySelector('#editor-body').innerHTML='';root.querySelector('#editor-tabs').innerHTML='';
         root.querySelector('#editor-overlay').setAttribute('hidden','');
         root.querySelector('#toast').setAttribute('hidden','');
         root.querySelector('#sidebar').classList.remove('is-open');root.querySelector('#mobile-shade').classList.remove('is-open');
+        root.querySelector('body').style.removeProperty('overflow');
+        root.querySelector('body').removeAttribute('style');
         root.removeAttribute('style');
         download('index.html','text/html;charset=utf-8','<!DOCTYPE html>\n'+root.outerHTML);
-        toast('网站文件已下载！将 index.html 上传到 GitHub Pages 即可发布更新。');
+        toast('公开版 index.html 已下载：没有编辑入口。上传到 GitHub Pages 即可更新。');
       }
       function resetDraft() {
         if(!confirm('确定清除当前浏览器中的所有修改，恢复网页初始内容？'))return;
@@ -683,18 +688,18 @@
         el('editor-tabs').innerHTML=TABS.map(x=>`<button type="button" role="tab" aria-selected="${x.id===editorTab}" data-tab="${x.id}" class="editor-tab ${x.id===editorTab?'selected':''}">${e(x.label)}</button>`).join('');
         el('editor-tabs').querySelectorAll('[data-tab]').forEach(b=>b.addEventListener('click',()=>{editorTab=b.dataset.tab;renderEditorTabs();renderEditorBody();el('editor-body').scrollTop=0;}));
       }
-      function openEditor() {el('editor-overlay').hidden=false;document.body.style.overflow='hidden';renderEditorTabs();renderEditorBody();}
+      function openEditor() {if (IS_PUBLIC) return; el('editor-overlay').hidden=false;document.body.style.overflow='hidden';renderEditorTabs();renderEditorBody();}
       function closeEditor() {el('editor-overlay').hidden=true;document.body.style.overflow='';}
       el('editor-close').addEventListener('click',closeEditor);
       el('editor-overlay').addEventListener('click',(event)=>{if(event.target===el('editor-overlay'))closeEditor();});
-      el('edit-trigger').addEventListener('click',openEditor);
+      el('edit-trigger')?.addEventListener('click',openEditor);
       el('download-json').addEventListener('click',downloadJson);
       el('download-html').addEventListener('click',downloadHtml);
       document.addEventListener('keydown',event=>{
         if(event.key==='Escape'&&!el('editor-overlay').hidden)closeEditor();
-        if(event.key.toLowerCase()==='e'&&event.shiftKey&&(event.metaKey||event.ctrlKey)){event.preventDefault();openEditor();}
+        if(!IS_PUBLIC && event.key.toLowerCase()==='e'&&event.shiftKey&&(event.metaKey||event.ctrlKey)){event.preventDefault();openEditor();}
       });
-      const editorEnabled=location.protocol==='file:'||new URLSearchParams(location.search).get('edit')==='1';
+      const editorEnabled=!IS_PUBLIC && (location.protocol==='file:'||new URLSearchParams(location.search).get('edit')==='1');
       if(editorEnabled)el('edit-trigger').hidden=false;
       route();
     })();
